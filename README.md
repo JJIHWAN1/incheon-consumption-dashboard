@@ -5,22 +5,12 @@
 현재는 실제 데이터가 없는 상태를 가정해 **더미(합성) 데이터**로 동작합니다.
 또한 **실시간(모의) 소비 API**를 `TTL=300s(5분)` 캐시로 흉내 내서, 5분마다 값이 갱신되는 것처럼 보이도록 구성했습니다.
 
-## 실행 방법
-
-아래 명령은 **이 프로젝트 폴더(`/Users/kimjihwan/CascadeProjects/incheon-consumption-dashboard`)에서 실행**해야 합니다.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run app.py
-```
-
-만약 다른 경로에서 실행해야 한다면, 아래처럼 **절대경로**를 사용해도 됩니다.
-
-```bash
-pip install -r /Users/kimjihwan/CascadeProjects/incheon-consumption-dashboard/requirements.txt
-streamlit run /Users/kimjihwan/CascadeProjects/incheon-consumption-dashboard/app.py
 ```
 
 ## 기능
