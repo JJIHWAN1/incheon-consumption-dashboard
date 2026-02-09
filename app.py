@@ -237,7 +237,7 @@ def main() -> None:
     with kpi4:
         st.metric("선택 기간 총 결제건수", f"{int(df_gu[METRIC.tx_col].sum()):,}건")
 
-    st.caption(f"실시간 데이터 기준 시각: {rt['as_of']} (TTL=300s)")
+    #st.caption(f"실시간 데이터 기준 시각: {rt['as_of']} (TTL=300s)")
 
     summary = compute_summary(df_gu, amount_col=METRIC.amount_col, tx_col=METRIC.tx_col)
     st.subheader("핵심 요약")
