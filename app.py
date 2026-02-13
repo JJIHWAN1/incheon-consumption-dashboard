@@ -255,9 +255,11 @@ def main() -> None:
         )
         fig_hour_amt = px.line(hourly, x="hour", y=METRIC.amount_col, markers=True, labels={"hour": "시간", METRIC.amount_col: "평균 결제액(₩)"})
         fig_hour_amt.update_layout(yaxis_tickformat=',')
+        fig_hour_amt.update_traces(hovertemplate='%{y:,.0f}')
         st.plotly_chart(fig_hour_amt, use_container_width=True)
 
         fig_hour_tx = px.line(hourly, x="hour", y=METRIC.tx_col, markers=True, labels={"hour": "시간", METRIC.tx_col: "평균 결제건수(건)"})
+        fig_hour_tx.update_traces(hovertemplate='%{y:,.0f}건')
         st.plotly_chart(fig_hour_tx, use_container_width=True)
 
     with c2:
@@ -273,9 +275,11 @@ def main() -> None:
 
         fig_wd_amt = px.bar(wd, x="요일", y=METRIC.amount_col, labels={METRIC.amount_col: "평균 결제액(₩)"})
         fig_wd_amt.update_layout(yaxis_tickformat=',')
+        fig_wd_amt.update_traces(hovertemplate='%{y:,.0f}')
         st.plotly_chart(fig_wd_amt, use_container_width=True)
 
         fig_wd_tx = px.bar(wd, x="요일", y=METRIC.tx_col, labels={METRIC.tx_col: "평균 결제건수(건)"})
+        fig_wd_tx.update_traces(hovertemplate='%{y:,.0f}건')
         st.plotly_chart(fig_wd_tx, use_container_width=True)
 
     st.subheader("일자별 추이")
@@ -294,6 +298,7 @@ def main() -> None:
         title="일자별 결제액 추이"
     )
     fig_daily_amt.update_layout(yaxis_tickformat=',')
+    fig_daily_amt.update_traces(hovertemplate='%{y:,.0f}')
     st.plotly_chart(fig_daily_amt, use_container_width=True)
 
     # 결제건수 그래프
@@ -304,6 +309,7 @@ def main() -> None:
         labels={"value": "결제건수(건)", "date": "날짜"},
         title="일자별 결제건수 추이"
     )
+    fig_daily_tx.update_traces(hovertemplate='%{y:,.0f}건')
     st.plotly_chart(fig_daily_tx, use_container_width=True)
 
     with st.expander("데이터 미리보기"):
