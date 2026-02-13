@@ -283,13 +283,25 @@ def main() -> None:
         .reset_index()
         .sort_values("date")
     )
-    fig_daily = px.line(
+    # 결제액 그래프
+    fig_daily_amt = px.line(
         daily,
         x="date",
-        y=[METRIC.amount_col, METRIC.tx_col],
-        labels={"value": "값", "date": "날짜", "variable": "지표"},
+        y=METRIC.amount_col,
+        labels={"value": "결제액", "date": "날짜"},
+        title="일자별 결제액 추이"
     )
-    st.plotly_chart(fig_daily, use_container_width=True)
+    st.plotly_chart(fig_daily_amt, use_container_width=True)
+
+    # 결제건수 그래프
+    fig_daily_tx = px.line(
+        daily,
+        x="date",
+        y=METRIC.tx_col,
+        labels={"value": "결제건수", "date": "날짜"},
+        title="일자별 결제건수 추이"
+    )
+    st.plotly_chart(fig_daily_tx, use_container_width=True)
 
     with st.expander("데이터 미리보기"):
         st.dataframe(df_gu.head(50), use_container_width=True)
