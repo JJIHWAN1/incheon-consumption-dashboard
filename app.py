@@ -25,8 +25,8 @@ DEFAULT_GU_LIST = [
 
 @dataclass(frozen=True)
 class MetricConfig:
-    amount_col: str = "amount"
-    tx_col: str = "tx_count"
+    amount_col: str = "결제액"
+    tx_col: str = "결제건수"
 
 
 METRIC = MetricConfig()
@@ -135,8 +135,8 @@ def fetch_realtime_stub(gu: str, seed: int) -> dict:
     return {
         "gu": gu,
         "as_of": now.isoformat(timespec="seconds"),
-        "tx_count_5m": tx_5m,
-        "amount_5m": amount_5m,
+        "결제건수_5분": tx_5m,
+        "결제액_5분": amount_5m,
     }
 
 
@@ -229,9 +229,9 @@ def main() -> None:
 
     kpi1, kpi2, kpi3, kpi4 = st.columns(4)
     with kpi1:
-        st.metric("실시간(최근 5분) 결제액", format_currency(rt["amount_5m"]))
+        st.metric("실시간(최근 5분) 결제액", format_currency(rt["결제액_5분"]))
     with kpi2:
-        st.metric("실시간(최근 5분) 결제건수", f"{rt['tx_count_5m']:,}건")
+        st.metric("실시간(최근 5분) 결제건수", f"{rt['결제건수_5분']:,}건")
     with kpi3:
         st.metric("선택 기간 총 결제액", format_currency(df_gu[METRIC.amount_col].sum()))
     with kpi4:
